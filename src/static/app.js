@@ -53,10 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           details.participants.forEach((email) => {
             const participant = document.createElement("li");
+            const participantRow = document.createElement("div");
+            participantRow.className = "participant-row";
 
             const participantEmail = document.createElement("span");
             participantEmail.textContent = email;
-            participant.appendChild(participantEmail);
+            participantRow.appendChild(participantEmail);
 
             const removeButton = document.createElement("button");
             removeButton.type = "button";
@@ -89,7 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Error unregistering participant:", error);
               }
             });
-            participant.appendChild(removeButton);
+            participantRow.appendChild(removeButton);
+            participant.appendChild(participantRow);
             participantsList.appendChild(participant);
           });
 
