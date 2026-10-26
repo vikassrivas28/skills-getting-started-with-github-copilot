@@ -32,6 +32,7 @@ def test_get_activities_returns_available_activities(client, test_activity):
     response = client.get("/activities")
 
     assert response.status_code == 200
+    assert response.headers["cache-control"] == "no-store"
     assert test_activity in response.json()
 
 
@@ -43,6 +44,9 @@ def test_signup_adds_participant(client, test_activity):
     assert response.status_code == 200
     assert response.json() == {"message": f"Signed up {email} for {test_activity}"}
     assert email in app_module.activities[test_activity]["participants"]
+
+    refreshed_activities = client.get("/activities")
+    assert email in refreshed_activities.json()[test_activity]["participants"]
 
 
 def test_signup_rejects_duplicate_participant(client, test_activity):
