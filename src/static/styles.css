@@ -91,8 +91,8 @@ section h3 {
 }
 
 .participants-list {
-  padding-left: 20px;
-  list-style: disc;
+  padding: 0;
+  list-style: none;
   color: #424b62;
   font-size: 14px;
 }
@@ -100,10 +100,6 @@ section h3 {
 .participants-list li {
   padding: 2px 0;
   overflow-wrap: anywhere;
-}
-
-.participants-list li::marker {
-  color: #3949ab;
 }
 
 .participant-row {
